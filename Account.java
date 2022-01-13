@@ -43,47 +43,52 @@ public class Account {
         System.out.println("After " + years + " years, the balance is " + newBalance);
     }
 
+   void showBalance() {
+        System.out.println("The balance is " + balance);
+    }
+
     void showMenu() {
-        char option = '\0';
-        Scanner input = new Scanner(System.in);
-        System.out.println("Welcome" + customerName + "!");
-        System.out.println("Enter 1 to make a deposit");
-        System.out.println("Enter 2 to make a withdrawal");
-        System.out.println("Enter 3 to see your previous transaction");
-        System.out.println("Enter 4 to calculate your interest");
-        System.out.println("Enter 5 to exit");
-        option = input.next().charAt(0);
-       
-        switch(option) {
-            case '1':
-                System.out.println("Enter the amount to deposit");
-                int amount = input.nextInt();
-                deposit(amount);
-                showMenu();
-                break;
-            case '2':
-                System.out.println("Enter the amount to withdraw");
-                amount = input.nextInt();
-                withdraw(amount);
-                showMenu();
-                break;
-            case '3':
-                getPreviousTransaction();
-                showMenu();
-                break;
-            case '4':
-                System.out.println("Enter the number of years");
-                int years = input.nextInt();
-                calculateInterest(years);
-                showMenu();
-                break;
-            case '5':
-                System.out.println("Thank you for banking with us!");
-                break;
-            default:
-                System.out.println("Invalid option");
-                showMenu();
-                break;
+        System.out.println("1. Show Balance");
+        System.out.println("2. Deposit");
+        System.out.println("3. Withdraw");
+        System.out.println("4. Get Previous Transaction");
+        System.out.println("5. Calculate Interest");
+        System.out.println("6. Quit");
+    }
+
+    void showMenu(Scanner input) {
+        int choice = 1;
+        while(choice != 6) {
+            System.out.println("Enter a choice: ");
+            choice = input.nextInt();
+            switch(choice) {
+                case 1:
+                    showBalance();
+                    break;
+                case 2:
+                    System.out.println("Enter an amount to deposit: ");
+                    int amount = input.nextInt();
+                    deposit(amount);
+                    break;
+                case 3:
+                    System.out.println("Enter an amount to withdraw: ");
+                    amount = input.nextInt();
+                    withdraw(amount);
+                    break;
+                case 4:
+                    getPreviousTransaction();
+                    break;
+                case 5:
+                    System.out.println("Enter the number of years: ");
+                    int years = input.nextInt();
+                    calculateInterest(years);
+                    break;
+                case 6:
+                    System.out.println("Thank you for using the ATM");
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+            }
         }
     }
 }
